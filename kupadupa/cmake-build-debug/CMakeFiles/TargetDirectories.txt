@@ -1,0 +1,3 @@
+/Users/mikolajmachalski/CLionProjects/kupadupa/cmake-build-debug/CMakeFiles/kupadupa.dir
+/Users/mikolajmachalski/CLionProjects/kupadupa/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/mikolajmachalski/CLionProjects/kupadupa/cmake-build-debug/CMakeFiles/rebuild_cache.dir
