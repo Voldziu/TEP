@@ -39,20 +39,36 @@ void CTable::v_set_name(std::string sName) {
 }
 
 bool CTable::b_set_new_size(int iTable_Len_New) {
+    if(iTable_Len_New<=0){
+        return false;
+    }
     int *pi_Swap;
-    pi_Swap = pi_rewrite_table(pi_Table,iTable_Len_New); // to trzeba zmienic
+    pi_Swap = pi_rewrite_table(pi_Table,iTable_Len_New);
     delete pi_Table;
     pi_Table=pi_Swap;
-    return true; // to do
+    return true;
 
 }
 CTable* CTable::pcClone() {
 
     return new CTable(*this);
 }
-void CTable::v_mod_tab(CTable *pc_Tab, int iNew_Size) {}
+void CTable::v_mod_tab(CTable *pc_Tab, int iNew_Size) {
+    int *pi_Swap;
+    pi_Swap= pi_rewrite_table((*pc_Tab).pi_Table,iNew_Size);
+    delete (*pc_Tab).pi_Table;
+    (*pc_Tab).pi_Table = pi_Swap;
+    (*pc_Tab).iTable_Length=iNew_Size;
 
-void CTable::v_mod_tab(CTable cTab, int iNew_Size) {}
+}
+
+void CTable::v_mod_tab(CTable cTab, int iNew_Size) {
+    int *pi_Swap;
+    pi_Swap= pi_rewrite_table(cTab.pi_Table,iNew_Size);
+    delete cTab.pi_Table;
+    cTab.pi_Table = pi_Swap;
+    cTab.iTable_Length=iNew_Size;
+}
 
 int* CTable::pi_rewrite_table(int *pi_Table,int iTab_Size){
     int *pi_Table_New = new int[iTab_Size];
@@ -62,6 +78,12 @@ int* CTable::pi_rewrite_table(int *pi_Table,int iTab_Size){
     }
     return pi_Table_New;
 
+}
+int CTable::get_iTable_Length() {
+    return iTable_Length;
+}
+int* CTable::get_pi_Table() {
+    return pi_Table;
 }
 
 

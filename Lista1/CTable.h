@@ -25,5 +25,7 @@ public:
     CTable* pcClone();
     void v_mod_tab(CTable *pc_Tab,int iNew_Size);
     void v_mod_tab(CTable cTab,int iNew_Size);
+    int* get_pi_Table();
+    int get_iTable_Length();
 };
 #endif //LISTA1_CTABLE_H
