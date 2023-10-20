@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Zadanie1-2-3.h"
+#include "Constants.h"
 
 void v_alloc_table_fill_34(int iSize){
     if(iSize<=0 ){
@@ -39,14 +40,14 @@ bool b_alloc_table_2_dim(int ***pi_Table, int iSize_X, int iSize_Y){
     return true; // if false was not returned, return true
 } // bool b_alloc_table_2_dim(int ***pi_Table, int iSize_X, int iSize_Y)
 
-bool b_dealloc_table_2_dim(int ***pi_Table, int iSize_X, int iSize_Y){ // no iSize_Y needed?
+bool b_dealloc_table_2_dim(int **pi_Table, int iSize_X, int iSize_Y){ // no iSize_Y needed? no *** needed, only **
     if(iSize_X<=0){
         return false;
     } else{
         for (int ix = 0; ix <iSize_X ; ++ix) {
-            delete (*pi_Table)[ix];
+            delete pi_Table[ix];
         }
-        delete *pi_Table;
+        delete pi_Table;
     }
     return true;
 } //bool b_dealloc_table_2_dim(int ***pi_Table, int iSize_X, int iSize_Y)

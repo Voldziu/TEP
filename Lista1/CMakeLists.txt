@@ -7,4 +7,8 @@ add_executable(Lista1 Zadanie1-2-3.cpp
         Zadanie1-2-3.h
         CTable.cpp
         CTable.h
-        Main.cpp)
+        Main.cpp
+        Constants.h
+        Constants.h
+        Functionalities.h
+        Functionalities.cpp)

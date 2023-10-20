@@ -67,6 +67,12 @@ build CMakeFiles/Lista1.dir/Main.cpp.o: CXX_COMPILER__Lista1_unscanned_Debug /Us
   OBJECT_DIR = CMakeFiles/Lista1.dir
   OBJECT_FILE_DIR = CMakeFiles/Lista1.dir
 
+build CMakeFiles/Lista1.dir/functionalities.cpp.o: CXX_COMPILER__Lista1_unscanned_Debug /Users/mikolajmachalski/CLionProjects/Lista1/functionalities.cpp || cmake_object_order_depends_target_Lista1
+  DEP_FILE = CMakeFiles/Lista1.dir/functionalities.cpp.o.d
+  FLAGS = -g -arch x86_64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/Lista1.dir
+  OBJECT_FILE_DIR = CMakeFiles/Lista1.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Lista1
@@ -75,7 +81,7 @@ build CMakeFiles/Lista1.dir/Main.cpp.o: CXX_COMPILER__Lista1_unscanned_Debug /Us
 #############################################
 # Link the executable Lista1
 
-build Lista1: CXX_EXECUTABLE_LINKER__Lista1_Debug CMakeFiles/Lista1.dir/Zadanie1-2-3.cpp.o CMakeFiles/Lista1.dir/CTable.cpp.o CMakeFiles/Lista1.dir/Main.cpp.o
+build Lista1: CXX_EXECUTABLE_LINKER__Lista1_Debug CMakeFiles/Lista1.dir/Zadanie1-2-3.cpp.o CMakeFiles/Lista1.dir/CTable.cpp.o CMakeFiles/Lista1.dir/Main.cpp.o CMakeFiles/Lista1.dir/functionalities.cpp.o
   FLAGS = -g -arch x86_64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
   OBJECT_DIR = CMakeFiles/Lista1.dir
   POST_BUILD = :

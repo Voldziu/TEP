@@ -4,6 +4,8 @@
 #include "CTable.h"
 #include <iostream>
 #include "Zadanie1-2-3.h"
+#include "Functionalities.h"
+
 
 int main(){
 //    int ***pppi_Table;
@@ -12,12 +14,8 @@ int main(){
     CTable *ctable_param = new CTable("Luka",15);
 
     std::cout <<(*ctable_param).get_iTable_Length();
-    for (int i = 0; i <(*ctable_param).get_iTable_Length() ; ++i) {
-        std::cout <<(*ctable_param).get_pi_Table()[i];
 
-
-    }
-    (*ctable_param).v_mod_tab(ctable_param,10);
+    v_mod_tab(ctable_param,10);
     std::cout <<(*ctable_param).get_iTable_Length();
     for (int i = 0; i <(*ctable_param).get_iTable_Length() ; ++i) {
         std::cout <<(*ctable_param).get_pi_Table()[i];

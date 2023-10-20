@@ -13,7 +13,7 @@ private:
     std::string s_name;
     int *pi_Table;
     int iTable_Length;
-    int* pi_rewrite_table(int *pi_Table,int iTab_Size);
+
 
 public:
     CTable();
@@ -23,8 +23,6 @@ public:
     void v_set_name(std::string sName);
     bool b_set_new_size(int iTable_Len);
     CTable* pcClone();
-    void v_mod_tab(CTable *pc_Tab,int iNew_Size);
-    void v_mod_tab(CTable cTab,int iNew_Size);
     int* get_pi_Table();
     int get_iTable_Length();
 };
