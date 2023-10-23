@@ -10,7 +10,7 @@ const int iConst_34 =34;
 const string  sBezparamtr_Prompt="bezp: ";
 const string sParam_Prompt="parametr: ";
 const string sKopiuj_Prompt="kopiuj: ";
-const string sUsuwam_Prompt="usuwam: "
+const string sUsuwam_Prompt="usuwam: ";
 
 
 

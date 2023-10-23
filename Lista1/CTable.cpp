@@ -54,6 +54,7 @@ bool CTable::b_set_new_size(int iTable_Len_New) {
     pi_Swap = pi_rewrite_table(&pi_Table,iTable_Len_New,iTable_Length);
     delete pi_Table;
     pi_Table=pi_Swap;
+    iTable_Length=iTable_Len_New;
     return true;
 
 }
