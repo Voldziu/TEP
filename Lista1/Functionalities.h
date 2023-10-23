@@ -9,6 +9,6 @@ void v_mod_tab(CTable *pc_Tab, int iNew_Size);
 
 void v_mod_tab(CTable cTab, int iNew_Size);
 
-int* pi_rewrite_table(int **pi_Table,int iTab_Size_New,int iTable_Length);
+int* pi_rewrite_table(int *pi_Table,int iTab_Size_New,int iTable_Length);
 
 #endif //LISTA1_FUNCTIONALITIES_H

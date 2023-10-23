@@ -18,12 +18,14 @@ private:
 public:
     CTable();
     CTable(std::string sName,int iTable_Len);
-    CTable(CTable &pcOther);
+    CTable(const CTable &pcOther);
     ~CTable();
     void v_set_name(std::string sName);
     bool b_set_new_size(int iTable_Len);
+    bool b_set_new_table(int* pi_Table_New,int iTable_Len_New);
     CTable* pcClone();
     int* get_pi_Table();
     int get_iTable_Length();
+    void v_double_size(CTable **pCTable_Other);
 };
 #endif //LISTA1_CTABLE_H
