@@ -9,5 +9,6 @@
 int* pi_rewrite_table(int *pi_Table,int iTab_Size_New,int iTable_Length);
 int* pi_rewrite_table_from_back(int *pi_Table,int iTab_Size_New,int iTable_Length);
 void v_print_table(int *pi_Table,int iTable_Size);
+bool b_compare_2_equal_len_tables(int *pi_Table1,int *pi_Table2,int iMutualLen);
 
 #endif //LISTA2_FUNCTIONALITIES_H
