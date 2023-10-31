@@ -17,17 +17,21 @@ public:
     void vSet(CNumber &pcNewVal);
     void operator=(const CNumber &pcNewVal);
     void operator=(const int iValue );
+    bool operator==( CNumber &pcNewVal);
+    bool operator==( int iValue );
     CNumber operator+(CNumber &pcNewVal);
     CNumber operator*(CNumber &pcNewVal);
-    CNumber operator-(CNumber &pcNewVal);
+    CNumber operator-(CNumber &pcOther);
     CNumber operator/(CNumber &pcNewVal);
     CNumber operator+(int iNewVal);
     CNumber operator*(int iNewVal);
     CNumber operator-(int iNewVal);
     CNumber operator/(int iNewVal);
-    void v_add(CNumber &pcNewVal, int**p2i_Number_Return, int**pi_iLength);
-    void v_subtract(CNumber &pcNewVal, int**p2i_Number_Return, int**pi_iLength);
-    bool b_compareTo_by_abs(CNumber &pcNewVal);
+    void v_add(CNumber &pcOther, int**p2i_Number_Return, int**pi_iLength);
+    void v_subtract(CNumber &pcOther, int**p2i_Number_Return, int**pi_iLength);
+    void v_multiply(CNumber &pcOther, int**p2i_Number_Return, int**pi_iLength);
+    void v_divide(CNumber &pcNewVal, int**p2i_Number_Return, int**pi_iLength);
+
     int* get_pi_Number();
     int get_iLength();
     string s_to_str();
