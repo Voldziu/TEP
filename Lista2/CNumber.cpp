@@ -14,7 +14,7 @@ CNumber::CNumber() {
     iLength=CONST_NUMBER_DEFAULT_LENGHTH;
     pi_Number = new int[iLength];
     positive=true;
-    cout<<"Tworzę domyślny Cnumber o dlugosci: "<<iLength<<", Wartości: "<<s_to_str()<<endl;
+    cout<<"Tworzę domyślny Cnumber o dlugosci: "<<iLength<<", Wartości: "<<s_to_str()<<"\t oraz adresie: "<<this<<endl;
 
 
 }
@@ -22,13 +22,13 @@ CNumber::CNumber(const CNumber &COther) {
     iLength=COther.iLength;
     pi_Number= pi_rewrite_table(COther.pi_Number,iLength,iLength);
     positive=COther.positive;
-    cout<<"Kopiuję Cnumber o dlugosci: "<<iLength<<", Wartości: "<<s_to_str()<<endl;
+    cout<<"Kopiuję Cnumber o dlugosci: "<<iLength<<", Wartości: "<<s_to_str()<<"\t z adresu: "<<&COther<<"\t na  adres: "<<this<<endl;
 
 }
 CNumber::~CNumber(){
 
 
-    cout<<"Usuwam Cnumber o dlugosci: "<<iLength<<", Wartości: "<<s_to_str()<<endl;
+    cout<<"Usuwam Cnumber o dlugosci: "<<iLength<<", Wartości: "<<s_to_str()<<"\t oraz adresie: "<<this<<endl;
 
     delete pi_Number;
 }
@@ -56,6 +56,7 @@ void CNumber::vSet(int iNewVal) {
 
 }
 void CNumber::operator=(const CNumber &pcOther) {
+    cout<<"------- =  begins-----"<<endl;
     this->vSet_all_params(pcOther.pi_Number,pcOther.iLength,pcOther.positive);
 }
 void CNumber::operator=(const int iValue)  {
@@ -81,24 +82,28 @@ bool CNumber::operator==( int iValue ){
 
 }
 CNumber CNumber::operator*(int iNewVal) {
+    cout<<"-------Int Multiplication begins-----"<<endl;
     CNumber CSecond;
     CSecond.vSet(iNewVal);
     return (*this) * CSecond;
 
 }
 CNumber CNumber::operator-(int iNewVal) {
+    cout<<"-------Int Substraction begins-----"<<endl;
     CNumber CSecond;
     CSecond.vSet(iNewVal);
     return (*this) - CSecond;
 
 }
 CNumber CNumber::operator+(int iNewVal) {
+    cout<<"-------Int Addition begins-----"<<endl;
     CNumber CSecond;
     CSecond.vSet(iNewVal);
     return (*this) + CSecond;
 
 }
 CNumber CNumber::operator/(int iNewVal) {
+    cout<<"-------Int Division begins-----"<<endl;
     CNumber CSecond;
     CSecond.vSet(iNewVal);
     return (*this) / CSecond;
@@ -106,13 +111,10 @@ CNumber CNumber::operator/(int iNewVal) {
 }
 
 CNumber CNumber::operator+(CNumber &pcNewVal) {
-    cout<<"-------Adding begins-----"<<endl;
+    cout<<"-------Cnumber Adding begins-----"<<endl;
     int *pi_Number, *pi_iLength, *pi_CompareValue;
     bool bNewSign;
     v_compareTo_by_abs(*this,pcNewVal,&pi_CompareValue);
-
-
-
     if( (positive==pcNewVal.positive)){//++
         v_add(pcNewVal,&pi_Number,&pi_iLength);
         if(positive){
@@ -140,11 +142,12 @@ CNumber CNumber::operator+(CNumber &pcNewVal) {
     CNumber CReturn;
     CReturn.vSet_all_params(pi_Number,*pi_iLength,bNewSign);
     delete pi_iLength; //WAZNE
+    delete pi_Number;
     delete pi_CompareValue;
     return CReturn;
 }
 CNumber CNumber::operator-(CNumber &pcOther){
-    cout<<"-------Substraction begins-----"<<endl;
+    cout<<"-------Cnumber Substraction begins-----"<<endl;
     int *pi_Number, *pi_iLength, *pi_CompareValue;
     bool bNewSign;
     v_compareTo_by_abs(*this,pcOther,&pi_CompareValue);
@@ -177,12 +180,13 @@ CNumber CNumber::operator-(CNumber &pcOther){
     CNumber CReturn;
     CReturn.vSet_all_params(pi_Number,*pi_iLength,bNewSign);
     delete pi_iLength; //WAZNE
+    delete pi_Number;
     delete pi_CompareValue;
     return CReturn;
 
 }
 CNumber CNumber::operator*(CNumber &pcOther){
-    cout<<"-------Multiplication begins-----"<<endl;
+    cout<<"-------Cnumber Multiplication begins-----"<<endl;
     int *pi_Number, *pi_iLength;
     bool bNewSign;
     v_multiply(pcOther,&pi_Number,&pi_iLength);
@@ -194,12 +198,13 @@ CNumber CNumber::operator*(CNumber &pcOther){
     CNumber CReturn;
     CReturn.vSet_all_params(pi_Number,*pi_iLength,bNewSign);
     delete pi_iLength; //WAZNE
+    delete pi_Number;
     return CReturn;
 
 
 }
 CNumber CNumber::operator/(CNumber &pcOther){
-    cout<<"-------Division begins-----"<<endl;
+    cout<<"-------Cnumber Division begins-----"<<endl;
     int *pi_Number, *pi_iLength;
     bool bNewSign;
     if( pcOther ==0){
@@ -218,6 +223,7 @@ CNumber CNumber::operator/(CNumber &pcOther){
     CNumber CReturn;
     CReturn.vSet_all_params(pi_Number,*pi_iLength,bNewSign);
     delete pi_iLength; //WAZNE
+    delete pi_Number;
     return CReturn;
 
 
