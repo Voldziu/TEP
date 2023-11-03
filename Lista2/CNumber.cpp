@@ -382,7 +382,7 @@ void CNumber::v_divide(CNumber &pcOther, int **p2i_Number_Return, int **pi_iLeng
             CTempMultResult=pcOtherAbs*iPartDivRes;
             CTempRemainder = CTempNominatorOrg-CTempMultResult;
             pi_Remainder_Table = pi_rewrite_table(CTempRemainder.pi_Number,CTempRemainder.iLength+1,CTempRemainder.iLength);
-            pi_Remainder_Table[CTempRemainder.iLength]=ii+pcOther.iLength;
+            pi_Remainder_Table[CTempRemainder.iLength]=pi_Number[ii+pcOther.iLength];
             CTempNominatorOrg.vSet_all_params(pi_Remainder_Table,CTempRemainder.iLength+1,true);
             delete pi_Remainder_Table;
             pi_Result[ii]=iPartDivRes;
