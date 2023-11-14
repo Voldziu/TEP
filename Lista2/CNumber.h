@@ -31,6 +31,7 @@ public:
     void v_subtract(CNumber &pcOther, int**p2i_Number_Return, int**pi_iLength);
     void v_multiply(CNumber &pcOther, int**p2i_Number_Return, int**pi_iLength);
     void v_divide(CNumber &pcNewVal, int**p2i_Number_Return, int**pi_iLength);
+    CNumber cDiv(CNumber &pcOther,CNumber **pc_Rest);
 
     int* get_pi_Number();
     int get_iLength();

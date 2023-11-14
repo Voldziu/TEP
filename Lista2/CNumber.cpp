@@ -7,6 +7,7 @@
 #include "CNumber.h"
 #include "constants.h"
 #include "functionalities.h"
+#include <sstream>
 
 using namespace std;
 
@@ -330,16 +331,10 @@ void CNumber::v_multiply(CNumber &pcOther, int**p2i_Number_Return, int**pi_iLeng
 
 }
 void CNumber::v_divide(CNumber &pcOther, int **p2i_Number_Return, int **pi_iLength) { // UWAZAC NA MEMORY LEAKI MEGA MEGA MEGA !!!!
-
-
-
-
-
     int *pi_SubNumber;
     int *pi_Remainder_Table;
     int *pi_Result;
     int *pi_ComparedValue;
-
 
     CNumber CTempNominatorOrg;
     CNumber CTempNominator;
@@ -348,9 +343,6 @@ void CNumber::v_divide(CNumber &pcOther, int **p2i_Number_Return, int **pi_iLeng
 
     int iPartDivRes;
     int iMaxLen = iLength - pcOther.iLength+1;
-
-
-
     CNumber pcOtherAbs;
     pcOtherAbs= pcOther;
     pcOtherAbs.vSet_all_params(pcOther.pi_Number,pcOther.iLength,true); // create a positive copy
@@ -403,11 +395,19 @@ void CNumber::v_divide(CNumber &pcOther, int **p2i_Number_Return, int **pi_iLeng
         *pi_iLength= new int (iMaxLen - iLeadingZeros);
 
     }
-
-
+}
+CNumber CNumber:: cDiv(CNumber &pcOther, CNumber **pc_Rest){
+    CNumber CRes, CRest,CMult;
+    CRes = *this / pcOther;
+    CMult =  pcOther * CRes;
+    CRest = *this - CMult;
+    *pc_Rest= new CNumber();
+    **pc_Rest = CRest;
+    return CRes;
 
 
 }
+
 
 
 int CNumber::get_iLength() {
@@ -431,12 +431,17 @@ string CNumber::s_to_str() {
     }
     if(bTabFlag){
         for (int ii = 0; ii <iLength ; ++ii) {
-            number = number + to_string( pi_Number[ii])+" ";
+            std::stringstream ss;
+            ss << pi_Number[ii];
+            number += ss.str();
 
         }
     } else{
         for (int ii = 0; ii <iLength ; ++ii) {
-            number = number + to_string( pi_Number[ii]);
+            std::stringstream ss;
+            ss << pi_Number[ii];
+            number += ss.str();
+
 
         }
     }

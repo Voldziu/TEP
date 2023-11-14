@@ -7,19 +7,26 @@ int main() {
     CNumber liczba1;
     CNumber liczba2;
     CNumber liczba3;
-    liczba1=4;
-    liczba2=100;
+    CNumber liczba4;
+    CNumber *pc_Rest;
+    liczba1=60;
+    liczba2=0;
     liczba3=104;
-//    try{
-//        liczba2 = liczba1 / liczba2;
-//    } catch (const exception& e ){
-//        std::cerr << "Caught an exception: " << e.what() << std::endl;
-//    }
-//    liczba2=liczba1/liczba2*liczba3;
-    liczba2 = liczba3/liczba1;
+
+
+    try{
+        liczba3 = liczba1 / liczba2;
+    } catch (const exception& e ){
+        std::cerr << "Caught an exception: " << e.what() << std::endl;
+    }
+
+
+    liczba4 = liczba3.cDiv(liczba1, &pc_Rest);
 
     cout<<liczba2.s_to_str()<<endl;
     cout<<liczba1.s_to_str()<<endl;
+    cout<<liczba4.s_to_str()<<endl;
+    cout<<pc_Rest->s_to_str()<<endl;
 
 
 
