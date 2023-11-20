@@ -12,5 +12,6 @@ bool b_is_digit(string sToken);
 bool b_is_variable(string sToken);
 vector<string> vec_tokenize(string sInput,char sDelimeter);
 int i_find(string* sTokenList,int iTokenListLen,string sWanted);
+double d_round(double dNumber,int iDecimalPlaces);
 
 #endif //LISTA3_FUNCTIONALITIES_H

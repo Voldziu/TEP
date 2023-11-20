@@ -13,11 +13,26 @@ using namespace std;
 
 using namespace std;
 CTree::CNode::CNode(string svalue){
+    if(CONSTboolDebugFlag){
+        cout<<"Tworzę węzeł na adres: "<<this <<endl;
+    }
     sValue = svalue;
     pi_vecChildren = new vector<CTree::CNode*>(2,nullptr);
     iRealValue=0;
     bIsEvaluated=false;
 
+}
+
+CTree::CNode::CNode(const CNode &COther){ //it copies without "connections"
+    if(CONSTboolDebugFlag){
+        cout<<"Kopiuję węzeł na adres: "<<this <<"z adresu: "<<this<<endl;
+    }
+
+    sValue = COther.sValue;
+    iRealValue=COther.iRealValue;
+    bIsEvaluated=COther.bIsEvaluated;
+    CParent=0;
+    pi_vecChildren = new vector<CTree::CNode*>(2,nullptr);
 }
 
 
@@ -26,6 +41,18 @@ CTree::CTree(){
         cout<<"Tworzę drzewo o adresie: "<<this <<endl;
     }
     pc_Root=0;
+}
+CTree::CTree(string sInput){
+    if(CONSTboolDebugFlag){
+        cout<<"Tworzę drzewo o adresie: "<<this <<endl;
+    }
+    int*pi_Errors=new int(0);
+    vector<string> vInputTokens;
+    vInputTokens = vec_tokenize(sInput,' ');
+
+    pc_Root=0;
+    v_enter(vInputTokens,&pi_Errors);
+    delete pi_Errors;
 }
 CTree::~CTree(){
     if(CONSTboolDebugFlag){
@@ -48,9 +75,9 @@ CTree::CNode::~CNode() {
         delete (*pi_vecChildren)[i];
 
     }
+    delete pi_vecChildren;
     if(CONSTboolDebugFlag){
-        cout<<"Usuwam węzeł z adresu: "<<this <<"o wartości: "<<this->sValue<<endl;
-        cout<<(*pi_vecChildren).capacity()<<endl;
+        cout<<"Usuwam węzeł z adresu: "<<this <<" o wartości: "<<this->sValue<<endl;
     }
 }
 
@@ -60,6 +87,7 @@ CTree::CNode::~CNode() {
     if ((*pvec_Tokens).empty()) {
         *pi_Errors = new int(-1);
         CNode *pC_node = new CNode("1");
+        (*pC_node).set_pc_Parent(&pc_Parent);
         return pC_node;
     }
     string sToken = (*pvec_Tokens).front();
@@ -116,7 +144,7 @@ void CTree::v_evaluate_variables_recur(vector<string> *pvec_Tokens, CNode *pc_Cu
         if(!pc_CurrentNode->get_bIsEvaluated()){
             string sToken;
             if ((*pvec_Tokens).empty()) {
-                 sToken ="0";
+                 sToken ="1";
             } else{
                  sToken = (*pvec_Tokens).front();
                 (*pvec_Tokens).erase((*pvec_Tokens).begin());
@@ -148,8 +176,10 @@ double CTree::v_comp_all_tree(CNode* pc_CurrentNode,int** pi_Errors){
         }  else if(b_is_operator(pc_CurrentNode->get_sValue(),&pi_HowManyArgs)){
             if(*pi_HowManyArgs==1){ //only one possibility
                 double dDegrees = v_comp_all_tree((*(pc_CurrentNode->get_pi_vecChildren()))[0],pi_Errors);
-                return sin(dDegrees* M_PI / 180.0);
                 delete pi_HowManyArgs;
+
+                return d_round(sin(dDegrees / 180.0* M_PI),10);
+
             } else if(*pi_HowManyArgs==2){
                 delete pi_HowManyArgs;
                 double dLeft = v_comp_all_tree((*(pc_CurrentNode->get_pi_vecChildren()))[0],pi_Errors);
@@ -277,4 +307,78 @@ vector<string>* CTree::vec_getSetOfVariables(){
     v_vars_recur(pc_Root,pvec_SetOfVariables);
     return pvec_SetOfVariables;
 }
+
+CTree::CNode* CTree::C_get_most_right(int**pi_Index){
+    return C_get_most_right_recur(pc_Root,pi_Index);
+}
+CTree::CNode* CTree::C_get_most_right_recur(CNode*pc_CurrentNode,int**pi_Index){
+
+    int index = pc_CurrentNode->get_pi_vecChildren()->size()-1;
+    bool bFound=false;
+    while(index>=0 && !bFound){
+        if((*(pc_CurrentNode->get_pi_vecChildren()))[index]==0){
+            index--;
+        } else{
+            bFound=true;
+        }
+    }
+    if(!bFound){
+        return pc_CurrentNode;
+
+    } else{
+        *pi_Index=new int(index);
+        return C_get_most_right_recur((*(pc_CurrentNode->get_pi_vecChildren()))[index],pi_Index);
+    }
+
+}
+void CTree::v_join(vector<string> vParamTokens,int** pi_Errors){
+    CNode* pc_NewRoot=0;
+    int* pi_Index=new int(0);
+    pc_NewRoot=C_procces_RPN_recur(&vParamTokens,pc_NewRoot,pi_Errors);
+    if(vParamTokens.size()>0){ // to many arguments
+        *pi_Errors=new int(1);
+    }
+    CNode * pc_MostRight=0;
+     pc_MostRight =C_get_most_right(&pi_Index);
+    CNode * pc_MostRightsParent = pc_MostRight->get_CParent();
+    pc_NewRoot->set_pc_Parent(&pc_MostRightsParent);
+    (*(pc_MostRight->get_CParent()->get_pi_vecChildren()))[*pi_Index]=pc_NewRoot;
+
+    delete pi_Index;
+    delete pc_MostRight;
+
+}
+void CTree::operator=(const CTree &COther){
+    CTree* nonConstCOther = const_cast<CTree*>(&COther);
+    pc_Root= nonConstCOther->C_get_ctree_copy()->pc_Root;
+
+}
+CTree CTree::operator+(CTree &COther){
+    CTree * CCopyOfThis = C_get_ctree_copy();
+    int* pi_Index=new int(0);
+    CNode* pc_NewRoot=0;
+    pc_NewRoot=COther.C_get_ctree_copy()->pc_Root;
+    CNode * pc_MostRight=0;
+    pc_MostRight = CCopyOfThis->C_get_most_right(&pi_Index);
+    CNode * pc_MostRightsParent = pc_MostRight->get_CParent();
+    pc_NewRoot->set_pc_Parent(&pc_MostRightsParent);
+    (*(pc_MostRightsParent->get_pi_vecChildren()))[*pi_Index]=pc_NewRoot;
+    delete pi_Index;
+    delete pc_MostRight;
+    return *CCopyOfThis;
+
+}
+
+CTree * CTree::C_get_ctree_copy()  {
+
+    int*pi_Errors;
+    CTree* pc_ReturnTree = new CTree();
+    CNode* pc_RootCopied=0;
+    vector<string>* pvec_Tokens= new vector<string>(vec_tokenize(to_string(),' '));
+    pc_RootCopied = C_procces_RPN_recur(pvec_Tokens,pc_RootCopied,&pi_Errors);
+    pc_ReturnTree->set_pc_Root(&pc_RootCopied);
+    return pc_ReturnTree;
+}
+
+
 

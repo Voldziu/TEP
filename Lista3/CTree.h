@@ -17,6 +17,7 @@ private:
     class CNode{
     public:
         CNode();
+        CNode(const CNode &COther);
         CNode(string sValue);
         ~CNode();
         vector<CNode*>* get_pi_vecChildren();
@@ -27,6 +28,7 @@ private:
         string get_sValue();
         void set_iRealValue(int iRealValue);
         int get_iRealValue();
+
 
 
 
@@ -43,6 +45,7 @@ private:
 public:
 
     CTree();
+    CTree(string sInput);
     ~CTree();
 
     void v_enter(vector<string> vParamTokens,int** pi_Errors);
@@ -59,6 +62,14 @@ public:
     void v_vars();
     void v_vars_recur(CNode* pc_CurrentNode,vector<string> *pvec_SetOfVariables);
     vector<string>* vec_getSetOfVariables();
+    CNode* C_get_most_right(int**pi_Index); // returns also the index where returned Cnode is allocated in Parent's vector of children
+    CNode* C_get_most_right_recur(CNode*pc_CurrentNode,int**pi_Index);
+    CTree * C_get_ctree_copy();
+
+
+    void v_join(vector<string> vParamTokens,int** pi_Errors);
+    void operator=(const CTree &COther);
+    CTree operator+(CTree &COther);
 
 
 

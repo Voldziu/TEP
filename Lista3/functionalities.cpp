@@ -80,3 +80,7 @@ int i_find(string* sTokenList,int iTokenListLen,string sWanted){
     }
     return -1;
 }
+double d_round(double dNumber,int iDecimalPlaces){
+    double multiplier = std::pow(10.0, iDecimalPlaces);
+    return std::round(dNumber * multiplier) / multiplier;
+}
