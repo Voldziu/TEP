@@ -36,17 +36,17 @@ void UI::v_procces_and_choose_action(vector<string> vTokens,bool** pb_Flag) {
     if (!vTokens.empty()) {
         vTokens.erase(vTokens.begin());
     }
-    if(sToken=="enter"){
+    if(sToken==CONSTenter){
 
         v_enter(vTokens);
 
-    } else if( sToken =="vars"){
+    } else if( sToken ==CONSTvars){
         v_vars();
 
-    }else if( sToken =="print"){
+    }else if( sToken ==CONSTprint){
         v_print();
 
-    }else if( sToken =="comp"){
+    }else if( sToken ==CONSTcomp){
         try{
             v_comp(vTokens);
         } catch (const exception& e ){
@@ -54,11 +54,11 @@ void UI::v_procces_and_choose_action(vector<string> vTokens,bool** pb_Flag) {
         }
 
 
-    }else if( sToken =="join"){
+    }else if( sToken ==CONSTjoin){
        v_join(vTokens);
 
     }
-    else if( sToken =="end"){
+    else if( sToken ==CONSTjoin){
         *pb_Flag= new bool(false);
 
     }else{

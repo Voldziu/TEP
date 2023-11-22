@@ -95,15 +95,14 @@ CTree::CNode::~CNode() {
 
     CNode *pC_node = new CNode(sToken);
       (*pC_node).set_pc_Parent(&pc_Parent);
-    if(b_is_operator(sToken,&pi_ArgsNumber)){
-        if(*pi_ArgsNumber==1){
-            CNode* pvec_swap;
-            pvec_swap=(*(*pC_node).get_pi_vecChildren())[0];
-            (*(*pC_node).get_pi_vecChildren())[0]= C_procces_RPN_recur(pvec_Tokens,pC_node,pi_Errors);
-        } else if( *pi_ArgsNumber==2){
-            (*(*pC_node).get_pi_vecChildren())[0]= C_procces_RPN_recur(pvec_Tokens,pC_node,pi_Errors);
-            (*(*pC_node).get_pi_vecChildren())[1]= C_procces_RPN_recur(pvec_Tokens,pC_node,pi_Errors);
+    if(b_is_operator(sToken,&pi_ArgsNumber)) {
+        if(*pi_ArgsNumber==CONSTintOperatorList4Args) {
+            (*(*pC_node).get_pi_vecChildren()).resize(CONSTintOperatorList4Args);
         }
+        for (int i = 0; i < *pi_ArgsNumber ; ++i) {
+            (*(*pC_node).get_pi_vecChildren())[i] = C_procces_RPN_recur(pvec_Tokens, pC_node, pi_Errors);
+        }
+
 
     } else if(b_is_digit(sToken)){
         (*(*pC_node).get_pi_vecChildren())[0]=0;
@@ -133,12 +132,8 @@ void CTree::v_evaluate_variables_recur(vector<string> *pvec_Tokens, CNode *pc_Cu
     int* pi_ArgsNumber;
 
     if(b_is_operator(pc_CurrentNode->get_sValue(), &pi_ArgsNumber)){
-        if(*pi_ArgsNumber==1){
-            v_evaluate_variables_recur(pvec_Tokens, (*(*pc_CurrentNode).get_pi_vecChildren())[0], pi_Errors);
-        } else if( *pi_ArgsNumber==2){
-            v_evaluate_variables_recur(pvec_Tokens, (*(*pc_CurrentNode).get_pi_vecChildren())[0], pi_Errors);
-            v_evaluate_variables_recur(pvec_Tokens, (*(*pc_CurrentNode).get_pi_vecChildren())[1], pi_Errors);
-
+        for (int i = 0; i <*pi_ArgsNumber ; ++i) {
+            v_evaluate_variables_recur(pvec_Tokens, (*(*pc_CurrentNode).get_pi_vecChildren())[i], pi_Errors);
         }
     } else if(b_is_variable(pc_CurrentNode->get_sValue())){
         if(!pc_CurrentNode->get_bIsEvaluated()){
@@ -174,30 +169,40 @@ double CTree::v_comp_all_tree(CNode* pc_CurrentNode,int** pi_Errors){
         if(b_is_digit(pc_CurrentNode->get_sValue())){
             return stoi(pc_CurrentNode->get_sValue());
         }  else if(b_is_operator(pc_CurrentNode->get_sValue(),&pi_HowManyArgs)){
-            if(*pi_HowManyArgs==1){ //only one possibility
+            if(*pi_HowManyArgs==CONSTintOperatorList1Args){ //only one possibility
                 double dDegrees = v_comp_all_tree((*(pc_CurrentNode->get_pi_vecChildren()))[0],pi_Errors);
                 delete pi_HowManyArgs;
 
-                return d_round(sin(dDegrees / 180.0* M_PI),10);
+                return d_round(sin(dDegrees / CONST180ForSin* M_PI),CONSTintRoundPlaces);
 
-            } else if(*pi_HowManyArgs==2){
+            } else if(*pi_HowManyArgs==CONSTintOperatorList2Args){
                 delete pi_HowManyArgs;
                 double dLeft = v_comp_all_tree((*(pc_CurrentNode->get_pi_vecChildren()))[0],pi_Errors);
                 double dRight = v_comp_all_tree((*(pc_CurrentNode->get_pi_vecChildren()))[1],pi_Errors);
-                if(pc_CurrentNode->get_sValue()=="+"){
+                if(pc_CurrentNode->get_sValue()==CONSTplus){
                     return dLeft+dRight;
-                } else if(pc_CurrentNode->get_sValue()=="-"){
+                } else if(pc_CurrentNode->get_sValue()==CONSTminus){
                     return dLeft-dRight;
-                }else if(pc_CurrentNode->get_sValue()=="*"){
+                }else if(pc_CurrentNode->get_sValue()==CONSTstar){
                     return dLeft*dRight;
-                }else if(pc_CurrentNode->get_sValue()=="/"){
+                }else if(pc_CurrentNode->get_sValue()==CONSTslash){
                     if(dRight==0.0){
                         throw runtime_error("Nie dziel przez zero cholero");
                     }else{
                         return dLeft/dRight;
                     }
                 }
+            } else if(*pi_HowManyArgs==CONSTintOperatorList4Args){
+                delete pi_HowManyArgs;
+                double dFirst = v_comp_all_tree((*(pc_CurrentNode->get_pi_vecChildren()))[0],pi_Errors);
+                double dSecond = v_comp_all_tree((*(pc_CurrentNode->get_pi_vecChildren()))[1],pi_Errors);
+                double dThird = v_comp_all_tree((*(pc_CurrentNode->get_pi_vecChildren()))[2],pi_Errors);
+                double dFourth = v_comp_all_tree((*(pc_CurrentNode->get_pi_vecChildren()))[3],pi_Errors);
+                return dFirst+dFourth+dSecond+dThird;
+
+
             }
+
         }else if(b_is_variable(pc_CurrentNode->get_sValue())){
             return pc_CurrentNode->get_iRealValue();
         }
@@ -214,8 +219,12 @@ void CTree::v_find_and_evaluate_all_instances_of_variable_recur(CNode* pc_Looked
         pc_CurrentNode->set_iRealValue(pc_LookedFor->get_iRealValue());
         pc_CurrentNode->set_bIsEvaluated(true);
     }
-    v_find_and_evaluate_all_instances_of_variable_recur(pc_LookedFor,(*(pc_CurrentNode->get_pi_vecChildren()))[0]);
-    v_find_and_evaluate_all_instances_of_variable_recur(pc_LookedFor,(*(pc_CurrentNode->get_pi_vecChildren()))[1]);
+    for (int i = 0; i <pc_CurrentNode->get_pi_vecChildren()->size() ; ++i) {
+        v_find_and_evaluate_all_instances_of_variable_recur(pc_LookedFor,(*(pc_CurrentNode->get_pi_vecChildren()))[i]);
+    }
+
+
+
 }
 
 
@@ -265,9 +274,10 @@ string CTree::to_string_recur(CTree::CNode* pc_Root) {
     }
     std::stringstream ss;
     ss << pc_Root->get_sValue() << " ";
-    ss << to_string_recur((*(pc_Root->get_pi_vecChildren()))[0]);
-    ss << to_string_recur((*(pc_Root->get_pi_vecChildren()))[1]);
+    for (int i = 0; i<pc_Root->get_pi_vecChildren()->size() ; ++i) {
+        ss << to_string_recur((*(pc_Root->get_pi_vecChildren()))[i]);
 
+    }
     return ss.str();
 
 }
@@ -286,8 +296,9 @@ void CTree::v_vars_recur(CNode* pc_CurrentNode,vector<string> *pvec_SetOfVariabl
                 pvec_SetOfVariables->push_back(pc_CurrentNode->get_sValue());
             }
         }
-        v_vars_recur((*(pc_CurrentNode->get_pi_vecChildren()))[0],pvec_SetOfVariables);
-        v_vars_recur((*(pc_CurrentNode->get_pi_vecChildren()))[1],pvec_SetOfVariables);
+        for (int i = 0; i <pc_CurrentNode->get_pi_vecChildren()->size() ; ++i) {
+            v_vars_recur((*(pc_CurrentNode->get_pi_vecChildren()))[i],pvec_SetOfVariables);
+        }
     } else{
         return;
     }
