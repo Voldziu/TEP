@@ -42,6 +42,36 @@ bool b_is_digit(string sToken) {
     return true;
 
 }
+bool b_is_double(string sToken){
+    bool bHasPoint=false;
+    for (int i = 0; i < sToken.length(); ++i) {
+        if(sToken[i]=='.'){
+            if(bHasPoint){
+                return false;
+            }
+            bHasPoint=true;
+        }
+        if(!isdigit(sToken[i])){
+            return false;
+        }
+
+    }
+    return true;
+}
+bool b_is_quoted_string(string sToken){
+    if(sToken[0]!='"'){
+        return false;
+    }
+    for (int ii = 1; ii < sToken.length()-1 ; ++ii) {
+        if(!isalpha(sToken[ii])){
+            return false;
+        }
+    }
+    if(sToken[sToken.length()-1]!='"'){
+        return false;
+    }
+    return true;
+}
 bool b_is_variable(std::string sToken) {
     if(!isalpha(sToken[0])){ // first letter should be alpha
         return false;
@@ -88,3 +118,49 @@ double d_round(double dNumber,int iDecimalPlaces){
     double multiplier = std::pow(10.0, iDecimalPlaces);
     return std::round(dNumber * multiplier) / multiplier;
 }
+std::vector<int> computePrefixFunction(string pattern) {
+    int m = pattern.length();
+    std::vector<int> prefix(m, 0);
+    int k = 0;
+
+    for (int q = 1; q < m; ++q) {
+        while (k > 0 && pattern[k] != pattern[q]) {
+            k = prefix[k - 1];
+        }
+
+        if (pattern[k] == pattern[q]) {
+            k++;
+        }
+
+        prefix[q] = k;
+    }
+
+    return prefix;
+}
+
+std::vector<int> searchKMP(string text, string pattern) {
+    int n = text.size();
+    int m = pattern.size();
+    std::vector<int> prefix = computePrefixFunction(pattern);
+    std::vector<int> indices;
+
+    int q = 0;
+
+    for (int i = 0; i < n; ++i) {
+        while (q > 0 && pattern[q] != text[i]) {
+            q = prefix[q - 1];
+        }
+
+        if (pattern[q] == text[i]) {
+            q++;
+        }
+
+        if (q == m) {
+            indices.push_back(i - m + 1);
+            q = prefix[q - 1];
+        }
+    }
+
+    return indices;
+}
+

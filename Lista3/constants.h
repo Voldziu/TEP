@@ -18,6 +18,11 @@ const string CONSTprint = "print";
 const string CONSTend = "end";
 const string CONSTcomp = "comp";
 
+const string CONSTIntType = "int";
+const string CONSTDoubleType = "double";
+const string CONSTStringType = "string";
+
+
 const string CONSTplus = "+";
 const string CONSTminus = "-";
 const string CONSTslash = "/";
