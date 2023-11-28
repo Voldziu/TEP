@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4561f666-6191-4fb0-a6b8-2c3fe693a6d4" name="Changes" comment="Koniec Listy 3">
+      <change beforePath="$PROJECT_DIR$/../Lista2/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Lista2/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="Lista4" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2023" />
+    <option name="minorVersion" value="2.2" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2Xi9G74kgXCoNp66EA3iiThHaaQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Lista4&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CMakeSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Lista3" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Lista3" TARGET_NAME="Lista3" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Lista3" RUN_TARGET_NAME="Lista3">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4561f666-6191-4fb0-a6b8-2c3fe693a6d4" name="Changes" comment="" />
+      <created>1699100934938</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1699100934938</updated>
+      <workItem from="1699100938611" duration="227000" />
+      <workItem from="1699270542452" duration="2962000" />
+      <workItem from="1699275815414" duration="865000" />
+      <workItem from="1699352524763" duration="6793000" />
+      <workItem from="1699442105608" duration="7836000" />
+      <workItem from="1699863506064" duration="4150000" />
+      <workItem from="1699868817192" duration="5866000" />
+      <workItem from="1699880419809" duration="3613000" />
+      <workItem from="1699891804831" duration="6266000" />
+      <workItem from="1699957369123" duration="8544000" />
+      <workItem from="1699974059309" duration="13996000" />
+      <workItem from="1699991955602" duration="1728000" />
+      <workItem from="1700036493681" duration="421000" />
+      <workItem from="1700037456951" duration="165000" />
+      <workItem from="1700037799308" duration="18812000" />
+      <workItem from="1700062575994" duration="6007000" />
+      <workItem from="1700136330729" duration="754000" />
+      <workItem from="1700468269901" duration="4854000" />
+      <workItem from="1700476329230" duration="29000" />
+      <workItem from="1700647729901" duration="2579000" />
+      <workItem from="1700754065925" duration="209000" />
+      <workItem from="1700814229839" duration="1018000" />
+      <workItem from="1700816540476" duration="321000" />
+      <workItem from="1700817310429" duration="398000" />
+      <workItem from="1700817783889" duration="643000" />
+      <workItem from="1701073351807" duration="4932000" />
+      <workItem from="1701079051865" duration="7962000" />
+      <workItem from="1701087046044" duration="1052000" />
+      <workItem from="1701089850135" duration="3719000" />
+      <workItem from="1701172753470" duration="6928000" />
+      <workItem from="1701185483643" duration="2948000" />
+    </task>
+    <task id="LOCAL-00001" summary="lista 3 init commit">
+      <option name="closed" value="true" />
+      <created>1699987379946</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1699987379946</updated>
+    </task>
+    <task id="LOCAL-00002" summary="pre-modyfikacja">
+      <option name="closed" value="true" />
+      <created>1700468892150</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700468892150</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Koniec Listy 3">
+      <option name="closed" value="true" />
+      <created>1700647754182</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700647754182</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticEditVcpkgJson value="false" />
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticFoundErrors value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="lista 3 init commit" />
+    <MESSAGE value="pre-modyfikacja" />
+    <MESSAGE value="Koniec Listy 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Koniec Listy 3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/CTree.h</url>
+          <line>23</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/CTree.cpp</url>
+          <line>83</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/CTree.cpp</url>
+          <line>126</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="pc_MostRight-&gt;sValue" language="ObjectiveC" />
+        <watch expression="pc_MostRight-&gt;CParent" />
+        <watch expression="pc_MostRight-&gt;CParent" />
+        <watch expression="pc_MostRight-&gt;CParent" />
+        <watch expression="pc_MostRight-&gt;CParent" />
+        <watch expression="this" language="ObjectiveC" />
+        <watch expression="__first.item-&gt;bIsEvaluated" />
+        <watch expression="this" />
+        <watch expression="this-&gt;pi_vecChildren" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
